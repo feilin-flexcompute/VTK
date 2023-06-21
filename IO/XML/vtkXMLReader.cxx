@@ -927,7 +927,9 @@ int vtkXMLReader::ReadArrayValues(vtkXMLDataElement* da, vtkIdType arrayIndex,
                                << arrayIndex + numValues << " were requested to be read");
     return 0;
   }
-  printf("==== in vtkXMLReader::ReadArrayValues(),  ====== 2 \n");
+  printf("==== in vtkXMLReader::ReadArrayValues(),  ====== 2, array->GetDataType() = %d \n",
+    array->GetDataType());
+
   switch (array->GetDataType())
   {
     vtkArrayIteratorTemplateMacro(result = vtkXMLDataReaderReadArrayValues(da, this->XMLParser,
