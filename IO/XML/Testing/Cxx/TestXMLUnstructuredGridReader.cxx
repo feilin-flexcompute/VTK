@@ -102,7 +102,7 @@ int TestXMLUnstructuredGridReader(int argc, char* argv[])
 
   int i;
   // Need to get the data root.
-  const char* data_root = "/home/feilin/code/ParaView/VTK/build/ExternalData/Testing";
+  const char* data_root = "C:\\Users\\feilin\\code";
 
   //  for (i = 0; i < argc - 1; i++)
   //  {
@@ -164,7 +164,7 @@ int TestXMLUnstructuredGridReader(int argc, char* argv[])
   filename = data_root;
   // filename += "/Data/polyhedron2pieces.vtu";
   // filename += "/Data/pizza_fail_open_paraview/om6wing_release-23.2.1.0/volume_proc0.vtu";
-  filename += "/Data/pizza_fail_open_paraview/release-23.2.1.0/volume_proc0.vtu";
+  filename += "\\volume_proc0.vtu";
   cout << "Loading " << filename << endl;
   vtkNew<vtkXMLUnstructuredGridReader> reader;
   reader->SetFileName(filename.c_str());
