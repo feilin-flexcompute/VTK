@@ -757,8 +757,10 @@ int vtkXMLDataReaderReadArrayValues(vtkXMLDataElement* da, vtkXMLDataParser* xml
     {
       isAscii = 0;
     }
-    result = (xmlparser->ReadInlineData(
-                da, isAscii, data, startIndex, numWords, array->GetDataType()) == numWords);
+    size_t retReadInlineData =
+      xmlparser->ReadInlineData(da, isAscii, data, startIndex, numWords, array->GetDataType());
+    printf("retReadInlineData = %lu\n", retReadInlineData);
+    result = (retReadInlineData == numWords);
   }
   return result;
 }
