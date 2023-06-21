@@ -907,9 +907,14 @@ int vtkXMLDataReaderReadArrayValues(vtkXMLDataElement* da, vtkXMLDataParser* xml
 int vtkXMLReader::ReadArrayValues(vtkXMLDataElement* da, vtkIdType arrayIndex,
   vtkAbstractArray* array, vtkIdType startIndex, vtkIdType numValues, FieldType fieldType)
 {
+  printf("==== in vtkXMLReader::ReadArrayValues()\n");
+  printf("Type of AbortExecute = %s\n", typeid(this->AbortExecute).name());
+  //  printf("AbortExecute = %d\n", this->AbortExecute);
+
   // Skip real read if aborting.
   if (this->AbortExecute)
   {
+    printf("==== in vtkXMLReader::ReadArrayValues(), return 0 because of abortExecute\n");
     return 0;
   }
   this->InReadData = 1;
