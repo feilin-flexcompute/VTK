@@ -730,6 +730,7 @@ template <class iterT>
 int vtkXMLDataReaderReadArrayValues(vtkXMLDataElement* da, vtkXMLDataParser* xmlparser,
   vtkIdType arrayIndex, iterT* iter, vtkIdType startIndex, vtkIdType numValues)
 {
+  printf("=== ....readArrayVlues(), v1, ====\n");
   if (!iter)
   {
     return 0;
@@ -767,6 +768,7 @@ int vtkXMLDataReaderReadArrayValues(vtkXMLDataElement* da, vtkXMLDataParser* xml
 {
   // We need to handle bit array separately because the "word" concept is a bit
   // different: a word size is in bits rather than bytes...
+  printf("=== ....readArrayVlues(), v2, ====\n");
   if (!iter)
   {
     return 0;
@@ -817,6 +819,7 @@ int vtkXMLDataReaderReadArrayValues(vtkXMLDataElement* da, vtkXMLDataParser* xml
   // So this specialization will read all strings starting from the beginning,
   // start putting the strings at the requested indices into the array
   // until the request numValues are put into the array.
+  printf("=== ....readArrayVlues(), v3, ====\n");
   vtkIdType bufstart = 0;
   vtkIdType actualNumValues = startIndex + numValues;
 
