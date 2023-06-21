@@ -917,6 +917,7 @@ int vtkXMLReader::ReadArrayValues(vtkXMLDataElement* da, vtkIdType arrayIndex,
     printf("==== in vtkXMLReader::ReadArrayValues(), return 0 because of abortExecute\n");
     return 0;
   }
+  printf("==== in vtkXMLReader::ReadArrayValues(), AbortExecute has no problem\n");
   this->InReadData = 1;
   int result;
   vtkArrayIterator* iter = array->NewIterator();
