@@ -742,6 +742,7 @@ int vtkXMLDataReaderReadArrayValues(vtkXMLDataElement* da, vtkXMLDataParser* xml
   void* data = array->GetVoidPointer(arrayIndex);
   if (da->GetAttribute("offset"))
   {
+    printf("=== ....readArrayVlues(), v1, if offset ====\n");
     vtkTypeInt64 offset = 0;
     da->GetScalarAttribute("offset", offset);
     result = (xmlparser->ReadAppendedData(
@@ -749,6 +750,7 @@ int vtkXMLDataReaderReadArrayValues(vtkXMLDataElement* da, vtkXMLDataParser* xml
   }
   else
   {
+    printf("=== ....readArrayVlues(), v1, else offset ====\n");
     int isAscii = 1;
     const char* format = da->GetAttribute("format");
     if (format && (strcmp(format, "binary") == 0))
