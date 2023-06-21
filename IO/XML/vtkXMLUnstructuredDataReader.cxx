@@ -30,6 +30,10 @@
 #include "vtkUnsignedCharArray.h"
 #include "vtkXMLDataElement.h"
 
+#include <vtksys/Encoding.hxx>
+#include <vtksys/SystemInformation.hxx>
+#include <vtksys/SystemTools.hxx>
+
 #include <cassert>
 #include <tuple>
 #include <utility>
@@ -731,8 +735,12 @@ int vtkXMLUnstructuredDataReader::ReadCellArray(vtkIdType numberOfCells,
     cellOffsets->SetNumberOfTuples(numberOfCells + 1);
     cellOffsets->SetComponent(0, 0, 0);
     printf("======== before readArrayValues() =======\n");
-    if (!this->ReadArrayValues(eOffsets, 1, cellOffsets, 0, numberOfCells, CELL_DATA) &&
-      !this->AbortExecute)
+    std::string trace = vtksys::SystemInformation::GetProgramStack(0, 0);
+    printf("%s\n", trace.c_str());
+    auto ret = this->ReadArrayValues(eOffsets, 1, cellOffsets, 0, numberOfCells, CELL_DATA);
+    printf("type of ret %s\n", typeid(ret).name());
+    printf("value of ret = %d\n", ret);
+    if (!ret && !this->AbortExecute)
     {
       vtkErrorMacro("Cannot read cell offsets from "
         << eCells->GetName() << " in piece " << this->Piece
