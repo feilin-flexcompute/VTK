@@ -644,6 +644,9 @@ size_t vtkXMLDataParser::ReadUncompressedData(
 
   size_t const headerSize = uh->DataSize();
   size_t r = this->DataStream->Read(uh->Data(), headerSize);
+  printf("====== after r is ready =====\n");
+  printf("r= %lu\n", r);
+  printf("headerSize = %lu\n", headerSize);
   if (r < headerSize)
   {
     vtkErrorMacro("Error reading uncompressed binary data header.  "

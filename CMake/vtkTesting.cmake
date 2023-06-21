@@ -1,10 +1,11 @@
-set(VTK_BUILD_TESTING "OFF"
+set(VTK_BUILD_TESTING "ON"
   CACHE STRING "Build module testing directories")
 set_property(CACHE VTK_BUILD_TESTING
   PROPERTY
     STRINGS "ON;OFF;WANT")
 
 if (VTK_BUILD_TESTING)
+  message(STATUS "VTK_BUILD_TESTING is ON")
   if (NOT VTK_DATA_STORE)
     # These checks must be synchronized with vtkExternalData.cmake
     if (NOT EXISTS "${VTK_SOURCE_DIR}/.ExternalData/README.rst" AND
@@ -30,6 +31,7 @@ if (VTK_BUILD_TESTING)
       TYPE INTERNAL)
   set(BUILD_TESTING ON)
 else ()
+    message(STATUS "VTK_BUILD_TESTING is OFF")
   set(BUILD_TESTING OFF)
 endif ()
 

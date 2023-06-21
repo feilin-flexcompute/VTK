@@ -730,6 +730,7 @@ int vtkXMLUnstructuredDataReader::ReadCellArray(vtkIdType numberOfCells,
     // index 1.
     cellOffsets->SetNumberOfTuples(numberOfCells + 1);
     cellOffsets->SetComponent(0, 0, 0);
+    printf("======== before readArrayValues() =======\n");
     if (!this->ReadArrayValues(eOffsets, 1, cellOffsets, 0, numberOfCells, CELL_DATA) &&
       !this->AbortExecute)
     {
