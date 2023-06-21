@@ -751,6 +751,12 @@ int vtkXMLDataReaderReadArrayValues(vtkXMLDataElement* da, vtkXMLDataParser* xml
   else
   {
     printf("=== ....readArrayVlues(), v1, else offset ====\n");
+    int aaaa = 1;
+    if (numValues == 36200361)
+    {
+      aaaa = 2;
+      int bbb = 3;
+    }
     int isAscii = 1;
     const char* format = da->GetAttribute("format");
     if (format && (strcmp(format, "binary") == 0))
