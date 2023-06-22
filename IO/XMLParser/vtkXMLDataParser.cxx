@@ -196,7 +196,11 @@ void vtkXMLDataParser::SeekInlineDataPosition(vtkXMLDataElement* element)
     stream->clear(stream->rdstate() & ~ios::failbit);
     currPosOfStream = this->Stream->tellg();
     printf("==== in scan, 1, currPosOfXML-Stream = %zu======\n", currPosOfStream);
-    this->SeekG(element->GetXMLByteIndex());
+    vtkTypeInt64 retGetXMLByteIndex = element->GetXMLByteIndex();
+    printf(
+      "==== in scan, 1.5, type of retGetXMLByteIndex = %s\n", typeid(retGetXMLByteIndex).name());
+    printf("==== in scan, 1.8, size of retGetXMLByteIndex = %zu\n", sizeof(retGetXMLByteIndex));
+    this->SeekG(retGetXMLByteIndex);
     currPosOfStream = this->Stream->tellg();
     printf("==== in scan, 2, currPosOfXML-Stream = %zu======\n", currPosOfStream);
     size_t temp = 100;
