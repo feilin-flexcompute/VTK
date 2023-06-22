@@ -770,7 +770,7 @@ int vtkXMLDataReaderReadArrayValues(vtkXMLDataElement* da, vtkXMLDataParser* xml
     printf("==== before ReadBinaryData, currPosOfXML-Stream = %zu======\n", currPosOfStream);
     size_t retReadInlineData =
       xmlparser->ReadInlineData(da, isAscii, data, startIndex, numWords, array->GetDataType());
-    printf("retReadInlineData = %lu\n", retReadInlineData);
+    printf("retReadInlineData = %zu\n", retReadInlineData);
     result = (retReadInlineData == numWords);
   }
   return result;
