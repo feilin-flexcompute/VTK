@@ -194,15 +194,40 @@ void vtkXMLDataParser::SeekInlineDataPosition(vtkXMLDataElement* element)
     char c = 0;
     stream->clear(stream->rdstate() & ~ios::eofbit);
     stream->clear(stream->rdstate() & ~ios::failbit);
+    currPosOfStream = this->Stream->tellg();
+    printf("==== in scan, 1, currPosOfXML-Stream = %zu======\n", currPosOfStream);
     this->SeekG(element->GetXMLByteIndex());
+    currPosOfStream = this->Stream->tellg();
+    printf("==== in scan, 2, currPosOfXML-Stream = %zu======\n", currPosOfStream);
+    size_t temp = 100;
     while (stream->get(c) && (c != '>'))
     {
+      currPosOfStream = this->Stream->tellg();
+      printf("==== in scan first while, temp=%zu, currPosOfXML-Stream = %zu======\n", temp,
+        currPosOfStream);
+      temp += 1;
     }
+    printf("======= before second while loop \n\n\n\n==========");
+    temp = 100;
     while (stream->get(c) && vtkXMLDataElement::IsSpace(c))
     {
+      currPosOfStream = this->Stream->tellg();
+      printf("==== in scan second while, temp=%zu, currPosOfXML-Stream = %zu======\n", temp,
+        currPosOfStream);
+      temp += 1;
     }
+    currPosOfStream = this->Stream->tellg();
+    printf("==== in scan, 3, currPosOfXML-Stream = %zu======\n", currPosOfStream);
+
     vtkTypeInt64 pos = this->TellG();
+
+    currPosOfStream = this->Stream->tellg();
+    printf("==== in scan, 4, currPosOfXML-Stream = %zu======\n", currPosOfStream);
+
     element->SetInlineDataPosition(pos - 1);
+
+    currPosOfStream = this->Stream->tellg();
+    printf("==== in scan, 5, currPosOfXML-Stream = %zu======\n", currPosOfStream);
   }
 
   currPosOfStream = this->Stream->tellg();
