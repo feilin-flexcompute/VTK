@@ -304,8 +304,13 @@ int vtkXMLParser::ParseXML()
   // to not check the error condition on the fin.read() before using
   // the data, but the fin.gcount() will be zero if an error occurred.
   // Therefore, the loop should be safe everywhere.
+  size_t posIn = in.tellg();
+  printf("==== in ParseXML, before while, posIn = %zu\n", posIn);
+  size_t count = 0;
   while (!this->ParseError && !this->ParsingComplete() && in)
   {
+    posIn = in.tellg();
+    printf("==== in ParseXML, in while, count = %zu, posIn = %zu\n", count, posIn);
     in.read(buffer, bufferSize);
     if (in.gcount())
     {
@@ -314,6 +319,7 @@ int vtkXMLParser::ParseXML()
         return 0;
       }
     }
+    count += 1;
   }
 
   // Clear the fail and eof bits on the input stream so we can later
