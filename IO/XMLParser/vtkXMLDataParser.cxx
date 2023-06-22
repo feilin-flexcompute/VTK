@@ -645,6 +645,9 @@ size_t vtkXMLDataParser::ReadUncompressedData(
   std::unique_ptr<vtkXMLDataHeader> uh(vtkXMLDataHeader::New(this->HeaderType, 1));
 
   size_t const headerSize = uh->DataSize();
+  printf("==== report the info of Stream ======\n");
+  size_t currPosOfStream = this->DataStream->Stream->tellg();
+  printf("==== report the info of Stream, currPosOfStream = %zu======\n", currPosOfStream);
   size_t r = this->DataStream->Read(uh->Data(), headerSize);
   printf("====== after r is ready =====\n");
   printf("r= %lu\n", r);
