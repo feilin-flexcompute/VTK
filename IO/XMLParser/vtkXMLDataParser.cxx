@@ -182,9 +182,15 @@ void vtkXMLDataParser::StartElement(const char* name, const char** atts)
 void vtkXMLDataParser::SeekInlineDataPosition(vtkXMLDataElement* element)
 {
   istream* stream = this->GetStream();
+  printf("In SeekInlineDataPosition \n");
+  size_t currPosOfStream = this->Stream->tellg();
+  printf("==== In SeekInlineDataPosition, before if-statement of Scan, currPosOfXML-Stream = "
+         "%zu======\n",
+    currPosOfStream);
   if (!element->GetInlineDataPosition())
   {
     // Scan for the start of the actual inline data.
+    printf("In SeekInlineDataPosition: scan for the start of the actual inline data \n");
     char c = 0;
     stream->clear(stream->rdstate() & ~ios::eofbit);
     stream->clear(stream->rdstate() & ~ios::failbit);
@@ -199,8 +205,16 @@ void vtkXMLDataParser::SeekInlineDataPosition(vtkXMLDataElement* element)
     element->SetInlineDataPosition(pos - 1);
   }
 
+  currPosOfStream = this->Stream->tellg();
+  printf("==== In SeekInlineDataPosition, before SeekG(), currPosOfXML-Stream = "
+         "%zu======\n",
+    currPosOfStream);
   // Seek to the data position.
   this->SeekG(element->GetInlineDataPosition());
+  currPosOfStream = this->Stream->tellg();
+  printf("==== In SeekInlineDataPosition, after SeekG(), currPosOfXML-Stream = "
+         "%zu======\n",
+    currPosOfStream);
 }
 
 //------------------------------------------------------------------------------
@@ -959,7 +973,8 @@ size_t vtkXMLDataParser::ReadInlineData(vtkXMLDataElement* element, int isAscii,
   this->DataStream = this->InlineDataStream;
   this->SeekInlineDataPosition(element);
   size_t currPosOfStream = this->Stream->tellg();
-  printf("==== before ReadBinaryData, currPosOfXML-Stream = %zu======\n", currPosOfStream);
+  printf("==== before ReadBinaryData(in readinlinedata()), currPosOfXML-Stream = %zu======\n",
+    currPosOfStream);
   if (isAscii)
   {
     return this->ReadAsciiData(buffer, startWord, numWords, wordType);
