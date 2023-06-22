@@ -168,6 +168,8 @@ public:
 
   // The stream to use for appended data.
   vtkInputStream* AppendedDataStream;
+  // The root XML element.
+  vtkXMLDataElement* RootElement;
 
 protected:
   vtkXMLDataParser();
@@ -211,9 +213,6 @@ protected:
 
   // Progress update methods.
   void UpdateProgress(float progress);
-
-  // The root XML element.
-  vtkXMLDataElement* RootElement;
 
   // The stack of elements currently being parsed.
   vtkXMLDataElement** OpenElements;

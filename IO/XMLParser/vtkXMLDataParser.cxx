@@ -200,7 +200,7 @@ void vtkXMLDataParser::SeekInlineDataPosition(vtkXMLDataElement* element)
     printf(
       "==== in scan, 1.5, type of retGetXMLByteIndex = %s\n", typeid(retGetXMLByteIndex).name());
     printf("==== in scan, 1.8, size of retGetXMLByteIndex = %zu\n", sizeof(retGetXMLByteIndex));
-    printf("==== in scan, 1.9, value of retGetXMLByteIndex = %ld\n", retGetXMLByteIndex);
+    printf("==== in scan, 1.9, value of retGetXMLByteIndex = %lld\n", retGetXMLByteIndex);
     this->SeekG(retGetXMLByteIndex);
     currPosOfStream = this->Stream->tellg();
     printf("==== in scan, 2, currPosOfXML-Stream = %zu======\n", currPosOfStream);
