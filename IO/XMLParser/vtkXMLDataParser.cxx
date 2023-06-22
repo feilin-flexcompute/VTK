@@ -490,6 +490,12 @@ int vtkXMLDataParser::ParseBuffer(const char* buffer, unsigned int count)
     }
   }
 
+  if (this->RootElement != nullptr)
+  {
+    int aaaa = 1;
+    int bbbb = 2;
+  }
+
   return 1;
 }
 
