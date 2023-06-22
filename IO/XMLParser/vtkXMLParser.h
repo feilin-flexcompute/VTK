@@ -121,12 +121,14 @@ public:
   vtkGetStringMacro(Encoding);
   ///@}
 
+  // make it public for debug :
+  istream* Stream;
+
 protected:
   vtkXMLParser();
   ~vtkXMLParser() override;
 
   // Input stream.  Set by user.
-  istream* Stream;
 
   // File name to parse
   char* FileName;

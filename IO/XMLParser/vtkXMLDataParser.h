@@ -158,6 +158,17 @@ public:
    */
   vtkTypeInt64 GetAppendedDataPosition() { return this->AppendedDataPosition; }
 
+  // The input stream used to read data.  Set by ReadAppendedData and
+  // ReadInlineData methods.
+  vtkInputStream* DataStream;
+
+  // The input stream used to read inline data.  May transparently
+  // decode the data.
+  vtkInputStream* InlineDataStream;
+
+  // The stream to use for appended data.
+  vtkInputStream* AppendedDataStream;
+
 protected:
   vtkXMLDataParser();
   ~vtkXMLDataParser() override;
@@ -220,17 +231,6 @@ protected:
 
   // The word type of binary input headers.
   int HeaderType;
-
-  // The input stream used to read data.  Set by ReadAppendedData and
-  // ReadInlineData methods.
-  vtkInputStream* DataStream;
-
-  // The input stream used to read inline data.  May transparently
-  // decode the data.
-  vtkInputStream* InlineDataStream;
-
-  // The stream to use for appended data.
-  vtkInputStream* AppendedDataStream;
 
   // Decompression data.
   vtkDataCompressor* Compressor;

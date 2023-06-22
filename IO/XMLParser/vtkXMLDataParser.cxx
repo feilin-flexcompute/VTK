@@ -958,6 +958,8 @@ size_t vtkXMLDataParser::ReadInlineData(vtkXMLDataElement* element, int isAscii,
 {
   this->DataStream = this->InlineDataStream;
   this->SeekInlineDataPosition(element);
+  size_t currPosOfStream = this->Stream->tellg();
+  printf("==== before ReadBinaryData, currPosOfXML-Stream = %zu======\n", currPosOfStream);
   if (isAscii)
   {
     return this->ReadAsciiData(buffer, startWord, numWords, wordType);

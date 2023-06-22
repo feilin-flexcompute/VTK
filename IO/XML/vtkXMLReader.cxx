@@ -46,6 +46,8 @@
 #include "vtkXMLReaderVersion.h"
 #include "vtkZLibDataCompressor.h"
 
+#include "vtkInputStream.h"
+
 #include "vtksys/Encoding.hxx"
 #include "vtksys/FStream.hxx"
 #include <vtksys/SystemTools.hxx>
@@ -763,6 +765,9 @@ int vtkXMLDataReaderReadArrayValues(vtkXMLDataElement* da, vtkXMLDataParser* xml
     {
       isAscii = 0;
     }
+
+    size_t currPosOfStream = xmlparser->Stream->tellg();
+    printf("==== before ReadBinaryData, currPosOfXML-Stream = %zu======\n", currPosOfStream);
     size_t retReadInlineData =
       xmlparser->ReadInlineData(da, isAscii, data, startIndex, numWords, array->GetDataType());
     printf("retReadInlineData = %lu\n", retReadInlineData);
