@@ -640,6 +640,8 @@ size_t vtkXMLDataParser::ReadUncompressedData(
   unsigned char* data, vtkTypeUInt64 startWord, size_t numWords, size_t wordSize)
 {
   // First read the length of the data.
+  int thisHeaderType = this->HeaderType;
+  printf("==== thisHeaderType = %d\n", thisHeaderType);
   std::unique_ptr<vtkXMLDataHeader> uh(vtkXMLDataHeader::New(this->HeaderType, 1));
 
   size_t const headerSize = uh->DataSize();
