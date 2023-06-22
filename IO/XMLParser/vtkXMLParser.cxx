@@ -310,11 +310,13 @@ int vtkXMLParser::ParseXML()
   while (!this->ParseError && !this->ParsingComplete() && in)
   {
     posIn = in.tellg();
-    printf("==== in ParseXML, in while, count = %zu, posIn = %zu\n", count, posIn);
+    // printf("==== in ParseXML, in while, count = %zu, posIn = %zu\n", count, posIn);
     in.read(buffer, bufferSize);
-    if (in.gcount())
+    size_t gcount_v1 = in.gcount();
+    if (gcount_v1)
     {
-      if (!this->ParseBuffer(buffer, in.gcount()))
+      size_t gcount_v2 = in.gcount();
+      if (!this->ParseBuffer(buffer, gcount_v2))
       {
         return 0;
       }
