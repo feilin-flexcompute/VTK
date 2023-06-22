@@ -200,6 +200,7 @@ void vtkXMLDataParser::SeekInlineDataPosition(vtkXMLDataElement* element)
     printf(
       "==== in scan, 1.5, type of retGetXMLByteIndex = %s\n", typeid(retGetXMLByteIndex).name());
     printf("==== in scan, 1.8, size of retGetXMLByteIndex = %zu\n", sizeof(retGetXMLByteIndex));
+    printf("==== in scan, 1.9, value of retGetXMLByteIndex = %ld\n", retGetXMLByteIndex);
     this->SeekG(retGetXMLByteIndex);
     currPosOfStream = this->Stream->tellg();
     printf("==== in scan, 2, currPosOfXML-Stream = %zu======\n", currPosOfStream);
@@ -693,8 +694,8 @@ size_t vtkXMLDataParser::ReadUncompressedData(
   printf("==== report the info of Stream, currPosOfStream = %zu======\n", currPosOfStream);
   size_t r = this->DataStream->Read(uh->Data(), headerSize);
   printf("====== after r is ready =====\n");
-  printf("r= %lu\n", r);
-  printf("headerSize = %lu\n", headerSize);
+  printf("r= %zu\n", r);
+  printf("headerSize = %zu\n", headerSize);
   if (r < headerSize)
   {
     vtkErrorMacro("Error reading uncompressed binary data header.  "
