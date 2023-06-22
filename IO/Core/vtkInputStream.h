@@ -71,13 +71,13 @@ public:
    * call to StartReading.
    */
   virtual void EndReading();
-
+  istream* Stream;
 protected:
   vtkInputStream();
   ~vtkInputStream() override;
 
   // The real input stream.
-  istream* Stream;
+
   size_t ReadStream(char* data, size_t length);
 
   // The input stream's position when StartReading was called.
