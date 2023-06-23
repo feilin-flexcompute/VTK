@@ -316,6 +316,11 @@ int vtkXMLParser::ParseXML()
     if (gcount_v1)
     {
       size_t gcount_v2 = in.gcount();
+      if (count == 683739)
+      {
+        printf("==== in ParseXML, in if-count, gcount_v1 = %zu, gcount_v2 = %zu\n", gcount_v1,
+          gcount_v2);
+      }
       if (!this->ParseBuffer(buffer, gcount_v2))
       {
         return 0;
